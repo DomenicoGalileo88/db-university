@@ -10,7 +10,7 @@ Modellizzare la struttura di una tabella per memorizzare tutti i dati riguardant
 
 # DB University
 
-## Department
+## Departments
 
 id:
 name:
@@ -20,7 +20,7 @@ phone_number:
 fullname_director:
 
 
-## Degree_course
+## Degree_courses
 
 id:
 name:
@@ -28,15 +28,16 @@ address:
 email:
 phone_number:
 
-## Course
+## Courses
 
 id:
 name:
+class:
 ?teacher?:
 ?student?:
 ?exam_session?:
 
-## Teacher
+## Teachers
 
 name:
 lastname:
@@ -45,9 +46,9 @@ phone_number:
 address:
 degree:
 salary:
-matter:
+matters:
 
-## Exam_session
+## Exam_sessions
 
 id:
 ?student?:
@@ -55,8 +56,9 @@ id:
 student_vote:
 date:
 matter:
+class:
 
-## Student
+## Students
 
 id:
 name:
