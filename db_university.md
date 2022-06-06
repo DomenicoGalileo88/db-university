@@ -28,4 +28,54 @@ SELECT COUNT('id') FROM departments;
 
 8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
 
-SELECT * FROM `teachers` WHERE `phone` IS NULL;
+SELECT COUNT(`id`) FROM `teachers` WHERE `phone` IS NULL;
+
+
+
+
+SELECT `courses`. `id`,`courses` . `name`,`courses` . `year`,`courses` . `period`,`courses` . `cfu`,`courses` . `website`
+FROM `courses`
+JOIN `degrees` 
+ON `courses`. `degree_id` = `degrees` . `id` 
+WHERE `degrees` . `name` = 'Corso di Laurea in Informatica';
+
+
+
+SELECT `courses`.`id` AS `course_id`,`courses`. `name`, `courses`. `period`, `courses`. `year`, `courses`. `cfu`, `courses`. `website`, `exam`. `id` AS `exam_id`, `exam`. `date`, `exam`. `hour` 
+FROM `courses` 
+JOIN `exams` 
+ON `courses`. `id` = `exams`. `course_id` WHERE `courses`. `id` = 144;
+
+Selezionare a quale dipartimento appartiene il Corso di Laurea in Diritto
+dell'Economia (Dipartimento di Scienze politiche, giuridiche e studi internazionali)
+
+SELECT `departments` . * 
+FROM `departments`
+JOIN `degrees`
+ON `departments`. `id` = `degrees` . `department_id` 
+WHERE `degrees` . `name` = 'Corso di Laurea in Diritto dell (devi fare escape dell'apice per funzionare) 'Economia (Dipartimento di Scienze politiche, giuridiche e studi internazionali)';
+
+n4 
+Selezionare tutti gli appelli d'esame del Corso di Laurea Magistrale in Fisica del primo anno
+
+SELECT `courses` . `name`,`courses` . `period`,`courses` . `cfu`,`courses` . `year`, `exams` . `date`, `exams` . `hour`,`exams` . `location`,`exams` . `address`
+FROM `degrees`
+JOIN `courses` ON `courses` . `degree_id` = `degrees` . `id`
+JOIN `exams` ON `exams` . `course_id` = `courses` . `id`
+WHERE `degrees` . `name` = 'Corso di Laurea Magistrale in Fisica' 
+AND `courses` . `year` = 1;
+
+5
+Selezionare tutti i docenti che insegnano nel Corso di Laurea in Lettere (21)
+
+SELECT DISTINCT `teachers` .`name`, `teachers` . `surname`
+FROM `teachers`
+JOIN `course_teacher` ON `course_teacher` . `teacher_id` = `teachers` . `id`
+JOIN `courses` ON `course_teacher` . `course_id` = `courses` . `id`
+JOIN `degrees` ON `degrees` . `id` = `courses` . `degree_id`
+WHERE `degrees` . `name` = 'Corso di Laurea in Lettere';
+
+6 Selezionare il libretto universitario di Mirco Messina (matricola n. 620320)
+
+
+
